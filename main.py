@@ -1,3 +1,7 @@
+
+from functions import get_todos, write_todos
+
+
 #while loop to run programme until user advises to stop
 
 while True:
@@ -13,19 +17,16 @@ while True:
         todo = user_choice[4:]
 
         #adding  to file
-        with open('todos.txt', 'r') as file:
-            todos = file.readlines()
+        todos = get_todos()
 
         todos.append(todo + '\n')
 
         #adding new items to file without overriding
-        with open('todos.txt', 'w') as file:
-            file.writelines(todos)
+        write_todos( todos)
 
     # show the complte todo list
     elif user_choice.startswith("show"):
-        with open('todos.txt', 'r') as file:
-            todos = file.readlines()
+        todos = get_todos()
 
         for index, item in enumerate(todos):
             item = item.strip('\n')
@@ -38,14 +39,12 @@ while True:
             index = int(user_choice[5:])
             index = index - 1
 
-            with open('todos.txt', 'r') as file:
-                todos = file.readlines()
+            todos = get_todos()
 
             new_todo = input("Enter new todo :")
             todos[index] = new_todo + '\n'
 
-            with open('todos.txt', 'w') as file:
-                file.writelines(todos)
+            write_todos(todos)
 
         except ValueError:
             continue
@@ -55,15 +54,13 @@ while True:
         try:
             number = int(user_choice[9:])
 
-            with open('todos.txt', 'r') as file:
-                todos = file.readlines()
+            todos = get_todos()
 
             index = number - 1
             todo_to_remove = todos[index].strip('\n')
             todos.pop(index)
 
-            with open('todos.txt', 'w') as file:
-                file.writelines(todos)
+            write_todos(todos)
 
             message = f"This Todo {todo_to_remove} was removed from the list"
             print(message)
