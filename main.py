@@ -6,73 +6,71 @@ while True:
 
     user_choice = input("Type 'add' or 'show' or 'exit' or 'edit' or 'complete' : ")
 
-#Using match-case to identify user's choice
 
-    match user_choice:
 
-        #add item
-        case 'add':
-            todo = input("Enter a todo :").capitalize() + "\n"
+    #add item
+    if 'add' in user_choice:
+        todo = user_choice[4:]
 
-            #adding  to file
-            with open('todos.txt', 'r') as file:
-                todos = file.readlines()
+        #adding  to file
+        with open('todos.txt', 'r') as file:
+            todos = file.readlines()
 
-            todos.append(todo)
+        todos.append(todo)
 
-            #adding new items to file without overriding
-            with open('todos.txt', 'w') as file:
-                file.writelines(todos)
+        #adding new items to file without overriding
+        with open('todos.txt', 'w') as file:
+            file.writelines(todos)
 
-        # show the complte todo list
-        case 'show':
-            with open('todos.txt', 'r') as file:
-                todos = file.readlines()
+    # show the complte todo list
+    elif 'show' in user_choice:
+        with open('todos.txt', 'r') as file:
+            todos = file.readlines()
 
-            for index, item in enumerate(todos):
-                item = item.strip('\n')
-                row = f"{index + 1}-{item}"
-                print(row)
+        for index, item in enumerate(todos):
+            item = item.strip('\n')
+            row = f"{index + 1}-{item}"
+            print(row)
 
-        #to edit the todo list
-        case 'edit':
-            index = int(input("enter the number of the todo to edit :"))
-            index = index - 1
+    #to edit the todo list
+    elif 'edit' in user_choice:
+        index = int(user_choice[5:])
+        index = index - 1
 
-            with open('todos.txt', 'r') as file:
-                todos = file.readlines()
+        with open('todos.txt', 'r') as file:
+            todos = file.readlines()
 
-            new_todo = input("Enter new todo :")
-            todos[index] = new_todo + '\n'
+        new_todo = input("Enter new todo :")
+        todos[index] = new_todo + '\n'
 
-            with open('todos.txt', 'w') as file:
-                file.writelines(todos)
+        with open('todos.txt', 'w') as file:
+            file.writelines(todos)
 
 
 
-        #to show complete list with indexes
-        case 'complete':
-            number = int(input("Number of the todo to complete :"))
+    #to show complete list with indexes
+    elif 'complete' in user_choice:
+        number = int(user_choice[9:])
 
-            with open('todos.txt', 'r') as file:
-                todos = file.readlines()
+        with open('todos.txt', 'r') as file:
+            todos = file.readlines()
 
-            index = number - 1
-            todo_to_remove = todos[index].strip('\n')
-            todos.pop(index)
+        index = number - 1
+        todo_to_remove = todos[index].strip('\n')
+        todos.pop(index)
 
-            with open('todos.txt', 'w') as file:
-                file.writelines(todos)
+        with open('todos.txt', 'w') as file:
+            file.writelines(todos)
 
-            message = f"This Todo {todo_to_remove} was removed from the list"
-            print(message)
+        message = f"This Todo {todo_to_remove} was removed from the list"
+        print(message)
 
-        #to end the programme
-        case 'exit':
-            break
+    #to end the programme
+    elif 'exit' in user_choice:
+        break
 
-        case _:
-            print("Sorry you entered wrong command. Please check your input !!!!")
+    else:
+        print("Sorry you entered wrong command. Please check your input !!!!")
 
 print("Bye...")
 
