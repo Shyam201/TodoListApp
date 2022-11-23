@@ -4,7 +4,7 @@ todos = []
 
 while 1 < 6:
 
-    user_choice = input("Type 'add' or 'show' or 'exit' or 'edit' : ")
+    user_choice = input("Type 'add' or 'show' or 'exit' or 'edit' or 'complete' : ")
 
     match user_choice:
         case 'add':
@@ -12,9 +12,9 @@ while 1 < 6:
             todos.append(todo)
 
         case 'show':
-            for item in todos:
-                print(item)
-
+            for index, item in enumerate(todos):
+                row = f"{index + 1}-{item}"
+                print(row)
         case 'edit':
             index = int(input("enter the number of the todo to edit :"))
 
@@ -23,6 +23,10 @@ while 1 < 6:
             print(f"You are going to edit {index_item}")
             new_todo = input("Enter new todo :")
             todos[index] = new_todo
+
+        case 'complete':
+            number = int(input("Number of the todo to complete :"))
+            todos.pop(number - 1)
 
 
         case 'exit':
