@@ -1,6 +1,8 @@
+import functions
+import time
 
-from functions import get_todos, write_todos
-
+now = time.strftime("%b, %d, %Y  %H:%M:%S")
+print("it is"+" "+now)
 
 #while loop to run programme until user advises to stop
 
@@ -17,16 +19,16 @@ while True:
         todo = user_choice[4:]
 
         #adding  to file
-        todos = get_todos()
+        todos = functions.get_todos()
 
         todos.append(todo + '\n')
 
         #adding new items to file without overriding
-        write_todos( todos)
+        functions.write_todos( todos)
 
     # show the complte todo list
     elif user_choice.startswith("show"):
-        todos = get_todos()
+        todos = functions.get_todos()
 
         for index, item in enumerate(todos):
             item = item.strip('\n')
@@ -39,12 +41,12 @@ while True:
             index = int(user_choice[5:])
             index = index - 1
 
-            todos = get_todos()
+            todos = functions.get_todos()
 
             new_todo = input("Enter new todo :")
             todos[index] = new_todo + '\n'
 
-            write_todos(todos)
+            functions.write_todos(todos)
 
         except ValueError:
             continue
@@ -54,13 +56,13 @@ while True:
         try:
             number = int(user_choice[9:])
 
-            todos = get_todos()
+            todos = functions.get_todos()
 
             index = number - 1
             todo_to_remove = todos[index].strip('\n')
             todos.pop(index)
 
-            write_todos(todos)
+            functions.write_todos(todos)
 
             message = f"This Todo {todo_to_remove} was removed from the list"
             print(message)
