@@ -2,6 +2,7 @@ import functions
 import time
 
 now = time.strftime("%b, %d, %Y  %H:%M:%S")
+
 print("it is"+" "+now)
 
 #while loop to run programme until user advises to stop
