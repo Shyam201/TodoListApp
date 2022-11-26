@@ -1,5 +1,4 @@
 clean
-completed MLMaster python
 Master ML
 Scikit_learn
 docstring
