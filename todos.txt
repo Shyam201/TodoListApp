@@ -1,9 +1,10 @@
-Clean
-Sweep
-Clean
-Sweep
-we just added a new arg
-clean sweepdraw practice
-cleaning
-Hi
-Hello
+clean
+completed MLMaster python
+Master ML
+Scikit_learn
+docstring
+pandas
+numpy
+personal portfolio
+completed ML
+add lastly
